@@ -371,3 +371,11 @@ section .section-title {
   margin-bottom: 50px;
   text-transform: uppercase;
 }
+
+.footerContainer {
+  background-color: var(--bg3);
+  text-align: center;
+  color: white;
+  margin-top: 100px;
+  padding: 24px;
+}
