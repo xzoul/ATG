@@ -16,9 +16,32 @@
 .mask-container {
   width: 1000px;
 }
+
+.heroTitle {
+  font-family: "Source Code Pro";
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  text-align: center;
+  /* text-wrap: balance; */
+}
+
+.heroDesc {
+  font-weight: 300;
+  color: white;
+  padding: 0 24px;
+}
 @media only screen and (min-width: 375px) {
   .mask-container {
     width: 300px;
+  }
+  .heroTitle {
+    font-size: 9vw;
+  }
+  .heroDesc {
+    font-size: 4vw;
   }
 }
 
@@ -40,26 +63,46 @@
   .mask-container {
     width: 600px;
   }
+  .heroTitle {
+    font-size: 8vw;
+  }
+  .heroDesc {
+    font-size: 3vw;
+  }
 }
 
 /* Medium devices (landscape tablets and medium-sized desktops) */
 @media only screen and (min-width: 991px) {
   .mask-container {
-    width: 700px;
+    width: 800px;
+  }
+  .heroTitle {
+    font-size: 7vw;
+  }
+  .heroDesc {
+    font-size: 3vw;
+    padding: 0 100px;
   }
 }
 
 /* Large devices (laptops and large desktops) */
 @media only screen and (min-width: 1199px) {
   .mask-container {
-    width: 750px;
+    width: 900px;
+  }
+  .heroTitle {
+    font-size: 6vw;
+  }
+  .heroDesc {
+    font-size: 2vw;
+    padding: 0 220px;
   }
 }
 
 /* Extra large devices (large desktops and TVs) */
 @media only screen and (min-width: 1399px) {
   .mask-container {
-    width: 800px;
+    width: 1000px;
   }
 }
 
