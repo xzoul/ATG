@@ -114,16 +114,6 @@ input[type="file"]::file-selector-button:hover {
     drop-shadow(-0.1px 0 0 var(--red)) drop-shadow(0 -0.1px 0 var(--red)) !important;
 }
 
-.contribute-container {
-  background-color: var(--bg3);
-  width: 600px;
-  margin-right: auto;
-  margin-left: auto;
-  /* height: 600px; */
-  padding: 24px;
-  border-radius: 20px;
-}
-
 .transparentImgBorder {
   filter: drop-shadow(1px 0 0 white) drop-shadow(1px 0 white)
     drop-shadow(-1px 0 0 white) drop-shadow(0 -1px 0 white) !important;
@@ -217,25 +207,13 @@ body {
 .gallery-container {
   width: 100%;
   display: flex;
-  overflow: auto;
+  /* overflow: auto; */
   min-height: 600px;
   /* min-height: 100vh; */
   align-items: center;
   flex-direction: column;
   padding: 16px;
   margin-top: 100px !important;
-}
-
-.contribute-main-container {
-  width: 100%;
-  display: flex;
-  overflow: auto;
-  /* min-height: 600px; */
-  /* min-height: 100vh; */
-  align-items: center;
-  flex-direction: column;
-  padding: 16px;
-  /* margin-top: 100px !important; */
 }
 
 .gallery-character-gallery {

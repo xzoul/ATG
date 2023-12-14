@@ -1,0 +1,75 @@
+.contribute-main-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  /* min-height: 600px; */
+  /* min-height: 100vh; */
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 100px;
+}
+
+.sectionTitle {
+  text-transform: uppercase;
+  font-family: "Source Code Pro";
+  color: white;
+  font-weight: 700;
+  align-self: center;
+}
+
+.contribute-container {
+  background-color: var(--bg3);
+  /* width: 600px; */
+  margin-right: auto;
+  margin-left: auto;
+  /* height: 600px; */
+  padding: 24px;
+  border-radius: 20px;
+}
+
+@media only screen and (min-width: 375px) {
+  .sectionTitle {
+    font-size: 7vw;
+  }
+
+  .contribute-container {
+    margin-top: 24px;
+  }
+}
+
+@media only screen and (min-width: 479px) {
+}
+
+@media only screen and (min-width: 576px) {
+}
+
+@media only screen and (min-width: 767px) {
+  .sectionTitle {
+    font-size: 6vw;
+  }
+}
+
+@media only screen and (min-width: 991px) {
+  .contribute-container {
+    width: 600px;
+  }
+  .sectionTitle {
+    font-size: 5vw;
+  }
+}
+
+@media only screen and (min-width: 1199px) {
+  .sectionTitle {
+    font-size: 4vw;
+  }
+}
+
+@media only screen and (min-width: 1399px) {
+}
+
+@media only screen and (min-width: 1599px) {
+}
+
+@media only screen and (min-width: 1600px) {
+}

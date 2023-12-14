@@ -144,7 +144,7 @@
   margin-top: -20px;
   font-family: "Source Code Pro";
   color: white;
-  font-size: 1rem;
+  font-size: 6vw;
 }
 
 @media only screen and (min-width: 375px) {
@@ -156,7 +156,7 @@
     max-height: 400px;
   }
   .cardUser {
-    font-size: 3vw;
+    font-size: 6vw;
   }
 }
 
@@ -293,7 +293,7 @@
   .card-description {
     margin-top: 8px;
     font-size: 0.8vw;
-    max-height: 220px;
+    max-height: 330px;
   }
   .cardUser {
     font-size: 0.8vw;
