@@ -1,0 +1,97 @@
+.forgotPassword a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+.forgotPassword a:hover {
+  text-decoration: none;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.forgotPassword {
+  padding: 13px 0;
+  text-align: right;
+}
+
+#registration,
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 8px;
+}
+
+.nav-link.text-white.active {
+  padding: 16px !important;
+  font-size: 1.2rem;
+  border-width: 2px;
+  width: 100%;
+}
+.nav-link.text-white {
+  padding: 16px !important;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.modalNavbar {
+  background-color: var(--bg3) !important;
+  font-family: Overpass !important;
+}
+
+.nav.nav-tabs.modalul {
+  /* padding: 0 24px !important; */
+  /* margin-top: 24px !important; */
+  margin: 24px 24px 0 24px;
+  border-bottom-width: 2px !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.active {
+  background-color: var(--red) !important;
+  color: white !important;
+}
+
+.btn.btn-secondary.modalBtn1 {
+  margin: 0 8px 0 0 !important;
+  font-size: 1.2rem !important;
+  border: 0 !important;
+}
+.btn.btn-danger.modalBtn2 {
+  /* background-color: var(--red) !important; */
+  border: 0 !important;
+  margin: 0 !important;
+  font-size: 1.2rem !important;
+}
+
+.modal-footer.modalBtns {
+  border: 0 !important;
+  margin: 24px 0 8px 0 !important;
+  padding: 0 !important;
+}
+
+.modalNavbar.modal-content.text-white {
+  min-height: 450px;
+}
+
+@media only screen and (max-width: 576px) {
+  .modal-footer.modalBtns {
+    display: flex;
+    justify-content: center;
+  }
+  .forgotPassword {
+    display: flex;
+    justify-content: center;
+  }
+  .modal-body {
+    padding: 8px;
+  }
+  .nav.nav-tabs.modalul {
+    margin: 16px 16px 0 16px;
+  }
+  .nav-link.text-white {
+    padding: 8px;
+  }
+}

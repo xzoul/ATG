@@ -1,0 +1,111 @@
+.bannerbg {
+  background-color: var(--bg1);
+  color: black;
+  text-align: center;
+  padding: 16px 24px 0 24px;
+}
+
+.banner-title {
+  font-family: "Source Code Pro";
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.banner-title-desc {
+  font-family: "Source Code Pro";
+  font-weight: 700;
+  text-transform: uppercase;
+  /* color: hsl(360 74% 51% / 1); */
+}
+
+.banner-desc {
+  font-size: 4vw;
+  font-weight: 300;
+}
+
+.bannerImg {
+  max-height: 300px;
+  max-width: 300px;
+  align-self: flex-end;
+}
+
+@media only screen and (min-width: 375px) {
+  .banner-title {
+    font-size: 8vw;
+  }
+
+  .banner-title-desc {
+    font-size: 8vw;
+  }
+
+  .banner-desc {
+    font-size: 4vw;
+  }
+
+  .bannerImg {
+    max-height: 200px;
+    max-width: 200px;
+  }
+}
+
+@media only screen and (min-width: 479px) {
+}
+
+@media only screen and (min-width: 576px) {
+  .banner-title {
+    font-size: 3vw;
+  }
+
+  .banner-title-desc {
+    font-size: 3vw;
+  }
+
+  .banner-desc {
+    font-size: 1.5vw;
+  }
+  .bannerImg {
+    max-height: 300px;
+    max-width: 300px;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .banner-title {
+    font-size: 3.5vw;
+  }
+
+  .banner-title-desc {
+    font-size: 3.5vw;
+  }
+
+  .banner-desc {
+    font-size: 2vw;
+  }
+}
+
+@media only screen and (min-width: 991px) {
+  .banner-title {
+    font-size: 3vw;
+  }
+
+  .banner-title-desc {
+    font-size: 3vw;
+  }
+
+  .banner-desc {
+    font-size: 1.5vw;
+  }
+}
+
+@media only screen and (min-width: 1199px) {
+}
+
+@media only screen and (min-width: 1399px) {
+}
+
+@media only screen and (min-width: 1599px) {
+}
+
+@media only screen and (min-width: 1600px) {
+}

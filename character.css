@@ -1,0 +1,304 @@
+.uploadBtn {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card {
+  border: none;
+  align-items: center;
+  height: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+#team .card {
+  border: none;
+  background: #ffffff;
+}
+
+.image-flip:hover .backside,
+.image-flip.hover .backside {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  border-radius: 0.25rem;
+}
+
+.image-flip:hover .frontside,
+.image-flip.hover .frontside {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.mainflip {
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -moz-transition: 1s;
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.frontside {
+  height: 100%;
+  position: relative;
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+.backside {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+}
+
+.frontside,
+.backside {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 1s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 1s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+}
+
+.frontside .card,
+.backside .card {
+  /* min-height: 250px; */
+}
+
+.backside .card a {
+  font-size: 18px;
+  color: #121212 !important;
+}
+
+.frontside .card .card-title,
+.backside .card .card-title {
+  color: #121212 !important;
+}
+
+.card-title-name {
+  font-size: 6vw;
+  font-weight: 700;
+  color: #121212;
+  margin: 8px;
+  align-self: stretch;
+  font-family: "Source Code Pro";
+}
+.card-description {
+  overflow: auto;
+  overflow-x: hidden;
+  text-align: left;
+  font-size: 1vw;
+  font-family: "Source Code Pro";
+}
+.cardUser {
+  font-family: "Overpass";
+  text-align: center;
+  color: var(--red);
+  text-transform: lowercase;
+  font-weight: 700;
+}
+.card-label {
+  margin-top: -20px;
+  font-family: "Source Code Pro";
+  color: white;
+  font-size: 1rem;
+}
+
+@media only screen and (min-width: 375px) {
+  .card-title-name {
+    font-size: 6vw;
+  }
+  .card-description {
+    font-size: 4vw;
+    max-height: 400px;
+  }
+  .cardUser {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 479px) {
+  .card-title-name {
+    font-size: 6vw;
+  }
+  .card-description {
+    margin-top: 16px;
+    font-size: 5vw;
+    max-height: 500px;
+  }
+  .cardUser {
+    font-size: 4vw;
+  }
+  .card-label {
+    font-size: 6vw;
+  }
+}
+
+/* Extra small devices (phones) */
+@media only screen and (min-width: 576px) {
+  .card-title-name {
+    font-size: 3vw;
+  }
+  .card-description {
+    margin-top: 16px;
+    font-size: 2vw;
+    max-height: 200px;
+  }
+  .cardUser {
+    font-size: 1.5vw;
+  }
+  .card-label {
+    font-size: 3vw;
+  }
+}
+
+/* Small devices (portrait tablets and small desktops) */
+@media only screen and (min-width: 767px) {
+  .card-title-name {
+    font-size: 2vw;
+  }
+  .card-description {
+    margin-top: 8px;
+    font-size: 1.5vw;
+    max-height: 175px;
+  }
+  .cardUser {
+    font-size: 1vw;
+  }
+  .card-label {
+    font-size: 2vw;
+  }
+}
+
+/* Medium devices (landscape tablets and medium-sized desktops) */
+@media only screen and (min-width: 991px) {
+  .card-title-name {
+    font-size: 1.5vw;
+  }
+  .card-description {
+    margin-top: 8px;
+    font-size: 1vw;
+    max-height: 180px;
+  }
+  .cardUser {
+    font-size: 1vw;
+  }
+  .card-label {
+    font-size: 1.5vw;
+  }
+}
+
+/* Large devices (laptops and large desktops) */
+@media only screen and (min-width: 1199px) {
+  .card-title-name {
+    font-size: 2vw;
+  }
+  .card-description {
+    margin-top: 12px;
+    font-size: 1vw;
+    max-height: 225px;
+  }
+  .cardUser {
+    font-size: 0.8vw;
+  }
+  .card-label {
+    font-size: 2vw;
+  }
+}
+
+/* Extra large devices (large desktops and TVs) */
+@media only screen and (min-width: 1399px) {
+  .card-title-name {
+    font-size: 2vw;
+  }
+  .card-description {
+    margin-top: 8px;
+    font-size: 1vw;
+    max-height: 300px;
+  }
+  .cardUser {
+    font-size: 1vw;
+  }
+  .card-label {
+    font-size: 2vw;
+  }
+}
+
+/* Extra extra large devices */
+@media only screen and (min-width: 1599px) {
+  .card-title-name {
+    font-size: 1.5vw;
+  }
+  .card-description {
+    margin-top: 8px;
+    font-size: 1vw;
+    max-height: 300px;
+  }
+  .cardUser {
+    font-size: 1vw;
+  }
+  .card-label {
+    font-size: 1.5vw;
+  }
+}
+
+/* Extra extra extra large devices */
+@media only screen and (min-width: 1600px) {
+  .card-title-name {
+    font-size: 1vw;
+  }
+  .card-description {
+    margin-top: 8px;
+    font-size: 0.8vw;
+    max-height: 220px;
+  }
+  .cardUser {
+    font-size: 0.8vw;
+  }
+  .card-label {
+    font-size: 1vw;
+  }
+}

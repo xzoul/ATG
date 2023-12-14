@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="banner.css" />
+    <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="hero.css" />
+    <link rel="stylesheet" href="character.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <script src="myscripts.js"></script>
+    <title>ATG Bootstrap Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://npmcdn.com/parse/dist/parse.min.js"
+    ></script>
+  </head>
+  <body>
+    <!-- 
+      Modal 
+    -->
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modalNavbar modal-content text-white">
+          <ul class="nav nav-tabs modalul" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active text-white"
+                id="home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#home"
+                type="button"
+                role="tab"
+                aria-controls="home"
+                aria-selected="true"
+                onclick="toggleRegister()"
+              >
+                Register
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link text-white"
+                id="profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#profile"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+                onclick="toggleLogin()"
+              >
+                Log In
+              </button>
+            </li>
+          </ul>
+          <div class="modal-body" id="contribute">
+            <!-- <div id="contribute" class="container"> -->
+            <!-- Start of Registration -->
+            <form id="registration">
+              <h6 style="margin: 0">
+                Please ensure that the email you provide is valid and active.
+              </h6>
+              <div class="form__group field">
+                <input
+                  type="email"
+                  class="form__field"
+                  placeholder="Name"
+                  name="emailRegister"
+                  id="emailRegister"
+                  required
+                />
+                <label for="emailRegister" class="form__label">Email</label>
+              </div>
+              <div class="form__group field">
+                <input
+                  type="text"
+                  class="form__field"
+                  placeholder="Name"
+                  name="usernameRegister"
+                  id="usernameRegister"
+                  required
+                />
+                <label for="usernameRegister" class="form__label"
+                  >Username</label
+                >
+              </div>
+              <div class="form__group field">
+                <input
+                  type="password"
+                  class="form__field"
+                  placeholder="Name"
+                  name="passwordRegister"
+                  id="passwordRegister"
+                  required
+                />
+                <label for="passwordRegister" class="form__label"
+                  >Password</label
+                >
+              </div>
+              <div class="modal-footer modalBtns">
+                <button
+                  type="button "
+                  class="btn btn-secondary modalBtn1"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button class="btn btn-danger modalBtn2" id="createButton">
+                  Register
+                </button>
+              </div>
+            </form>
+            <!-- End of Registration -->
+
+            <!-- Start of Log In -->
+            <form id="loginForm" class="loginForm" style="display: none">
+              <h6 style="margin: 0">
+                Please verify your email to sign in with your account.
+              </h6>
+              <div class="form__group field">
+                <input
+                  type="text"
+                  class="form__field"
+                  placeholder="Name"
+                  name="usernamelogin"
+                  id="usernamelogin"
+                  required
+                />
+                <label for="usernamelogin" class="form__label">Username</label>
+              </div>
+              <div class="form__group field">
+                <input
+                  type="password"
+                  class="form__field"
+                  placeholder="Name"
+                  name="passwordlogin"
+                  id="passwordlogin"
+                  required
+                />
+                <label for="passwordlogin" class="form__label">Password</label>
+              </div>
+              <div class="form__group field">
+                <div class="forgotPassword">
+                  <a href="//www.fb.com"><span>Forgot Password?</span></a>
+                </div>
+              </div>
+              <!-- <label for="usernamelogin">Username:</label>
+                <input
+                  type="text"
+                  id="usernamelogin"
+                  name="usernamelogin"
+                  required
+                />
+
+                <label for="passwordlogin">Password:</label>
+                <input
+                  type="password"
+                  id="passwordlogin"
+                  name="passwordlogin"
+                  required
+                /> 
+                <button type="button" onclick="login()">Login</button>
+              -->
+
+              <div class="modal-footer modalBtns">
+                <button
+                  type="button "
+                  class="btn btn-secondary modalBtn1"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button class="btn btn-danger modalBtn2" onclick="login()">
+                  Register
+                </button>
+              </div>
+            </form>
+            <!-- End of Log In -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+       End of Modal 
+    -->
+
+    <div>
+      <!-- 
+        Banner 
+      -->
+
+      <div class="bannerbg">
+        <div class="row justify-content-center">
+          <div class="col-sm-5 align-self-center">
+            <h1 class="banner-title">Ni Tian Xie Shen</h1>
+            <h1 class="banner-title-desc h2">Donghua Database</h1>
+            <p class="banner-desc">
+              Discover or contribute your knowledge about the Donghua/Anime
+            </p>
+          </div>
+          <img
+            src="/Images/Yun_Gu.png"
+            class="col-sm-3 bannerImg"
+            alt="Responsive image"
+          />
+        </div>
+      </div>
+
+      <!--
+         End of Banner 
+      -->
+
+      <!--
+         Navigation Bar 
+      -->
+
+      <nav class="navbar navbar-expand-sm sticky-top nav-container">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="/Images/Logo-ATG.png" alt="ATG" height="36" />
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mynavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="mynavbar"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="mainfonttitle nav-link" href="#hero">home</a>
+              </li>
+              <li class="nav-item">
+                <a class="mainfonttitle nav-link" href="#character"
+                  >characters</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  id="login"
+                  class="mainfonttitle nav-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  >login</a
+                >
+              </li>
+              <li
+                class="nav-item align-items-center iconss"
+                style="margin-left: 8px; padding: 6px"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  class="bi bi-moon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278M4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"
+                  />
+                </svg>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!--
+         End of Navigation Bar 
+      -->
+
+      <!-- 
+        Main 
+      -->
+
+      <main
+        data-bs-spy="scroll"
+        data-bs-target="#mynavbar"
+        data-bs-offset="0"
+        class="scrollspy-example"
+        tabindex="0"
+      >
+        <!-- 
+          Hero Section 
+        -->
+        <div id="hero" class="container heroContainer">
+          <div class="transparentImgBorder">
+            <img
+              class="mask mask-container"
+              src="/Videos/Against the Gods 逆天邪神 Ni Tian Xie Shen PV Trailer.gif"
+            />
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="lc-block text-center col-md-8">
+              <div editable="rich">
+                <h1
+                  class="rfs-25 fw-bold text-white banner-title display-3 textwrap"
+                >
+                  Welcome to
+                  <span class="text-red"> Against The Gods</span>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="lc-block text-center col-xxl-6 col-md-8">
+              <div editable="rich">
+                <p class="lead text-white">
+                  Against the Gods is a currently ongoing, Chinese fantasy
+                  novel, written by the Chinese author Mars Gravity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 
+          End of Hero Section 
+        -->
+
+        <!-- 
+          Character Section
+        -->
+        <div id="character"></div>
+        <div class="gallery-container container">
+          <h1
+            class="rfs-25 fw-bold text-white banner-title display-6 align-self-start"
+          >
+            Characters
+          </h1>
+          <div class="gallery-character-gallery">
+            <!-- 
+              Character Card   
+            -->
+            <div class="characterCard">
+              <div class="image-flip">
+                <div class="mainflip flip-0">
+                  <div class="frontside">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        src="/Images/XQ.png"
+                        alt="card image"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="backside">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <h5 class="card-title-name">Xia Qingyue</h5>
+                        <!-- <h5
+                          class="card-title card-name mainfont"
+                          style="font-weight: bolder"
+                        >
+                          Xia Qingyue
+                        </h5> -->
+                        <div class="card-desc">
+                          <span class="card-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Quisque non lectus ut nisi luctus pharetra non
+                            vel justo. Suspendisse quis mauris sed magna mollis
+                            molestie. Pellentesque auctor egestas mi non
+                            vestibulum. Proin vestibulum, ipsum nec tristique
+                            sagittis, mi mi facilisis ipsum, nec interdum diam
+                            nulla nec felis. Etiam malesuada elit eu sem
+                            sollicitudin sollicitudin. Nulla lobortis ipsum ut
+                            nibh finibus, at pellentesque dui dapibus. Phasellus
+                            ut venenatis sem, et fermentum lectus.
+                          </span>
+                          <span class="cardUser"> Jimmy </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="card-label">Xia Qingyue</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 
+          End of Character Section 
+        -->
+
+        <!--
+           Contribute Section 
+        -->
+        <div class="container contribute-main-container">
+          <h1
+            class="rfs-25 fw-bold text-white banner-title display-6 align-self-start"
+            style="margin-bottom: 48px"
+          >
+            Add A Character
+          </h1>
+          <div id="contribute" class="contribute-container container">
+            <form class="text-white" action="">
+              <h6 style="margin: 8px 0">
+                Kindly ensure all fields are properly filled.
+              </h6>
+              <div class="form__group field">
+                <input
+                  type="input"
+                  class="form__field"
+                  placeholder="Name"
+                  name="CharacterInput"
+                  id="CharacterInput"
+                  required
+                />
+                <label for="CharacterInput" class="form__label"
+                  >Character</label
+                >
+              </div>
+              <div class="form__group field">
+                <input
+                  type="input"
+                  class="form__field"
+                  placeholder="Name"
+                  name="ShortDetailInput"
+                  id="ShortDetailInput"
+                  required
+                />
+                <label for="ShortDetailInput" class="form__label"
+                  >Short Detail</label
+                >
+              </div>
+              <div class="form__group field">
+                <!-- <label class="custom-file-upload"> -->
+                <input
+                  type="file"
+                  class="form__field"
+                  placeholder="Image"
+                  name="ImageInput"
+                  id="ImageInput"
+                  required
+                  style="cursor: pointer"
+                />
+                <label for="ImageInput" class="form__label">Image</label>
+                <!-- </label> -->
+              </div>
+              <div class="uploadBtn">
+                <button class="mainfonttitle nav-link mt-1">
+                  upload character
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!--
+           End of Contribute Section  
+        -->
+      </main>
+
+      <!--
+         End of Main 
+      -->
+
+      <hr />
+      <footer class="mt-5 p-4 bg-dark text-white text-center">
+        <p>Footer</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script>
+  // Initialize Parse
+  Parse.initialize(
+    "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
+    "Jolo5FvOIS48u8aRHkC2alcI3mOVv9JUFswssZ2R"
+  );
+  Parse.serverURL = "https://parseapi.back4app.com/";
+
+  // --------------- Start of Sign Up ---------------
+
+  // Create a new User
+  async function createParseUser() {
+    // Creates a new Parse "User" object, which is created by default in your Parse app
+    let user = new Parse.User();
+    // Set the input values to the new "User" object
+    user.set("username", document.getElementById("usernameRegister").value);
+    user.set("email", document.getElementById("emailRegister").value);
+    user.set("password", document.getElementById("passwordRegister").value);
+    try {
+      // Call the save method, which returns the saved object if successful
+      user = await user.save();
+      if (user !== null) {
+        // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+
+        // Add the attribute to the button with the ID "myDynamicButton"
+        var myDynamicButton = document.getElementById("myDynamicButton");
+        myDynamicButton.setAttribute("data-bs-dismiss", "modal");
+        // alert(
+        //   `New object created with success! ObjectId: ${user.id}, ${user.get(
+        //     "username"
+        //   )}`
+        // );
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
+  }
+
+  // Add on click listener to call the create parse user function
+  document
+    .getElementById("createButton")
+    .addEventListener("click", async function () {
+      createParseUser();
+    });
+
+  // --------------- End of Parse Sign Up ---------------
+
+  // --------------- Start of Parse Log In ---------------
+  // logIn();
+
+  function login() {
+    // Get values from the form
+    var username = document.getElementById("usernamelogin").value;
+    var password = document.getElementById("passwordlogin").value;
+
+    // Use Parse.User.logIn method to authenticate
+    Parse.User.logIn(username, password, {
+      success: function (user) {
+        // User successfully logged in
+        console.log(
+          "User created successful with name: " +
+            user.get("username") +
+            " and email: " +
+            user.get("email")
+        );
+        alert("Login successful!");
+      },
+      error: function (user, error) {
+        // Login failed
+        alert(console.log("Error: " + error.code + " " + error.message));
+        console.log("Error: " + error.code + " " + error.message);
+        alert("Login failed. Please check your credentials.");
+      },
+    });
+  }
+
+  // function logIn() {
+  //   // Create a new instance of the user class
+  //   var user = Parse.User.logIn("myname", "mypass")
+  //     .then(function (user) {
+  //       console.log(
+  //         "User created successful with name: " +
+  //           user.get("username") +
+  //           " and email: " +
+  //           user.get("email")
+  //       );
+  //     })
+  //     .catch(function (error) {
+  //       console.log("Error: " + error.code + " " + error.message);
+  //     });
+  // }
+
+  // --------------- End of Parse Log Up In ---------------
+</script>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form__group field">
+      <input
+        type="input"
+        class="form__field"
+        placeholder="Name"
+        name="name"
+        id="name"
+        required
+      />
+      <label for="name" class="form__label">Character</label>
+    </div>
+    <div class="form__group field">
+      <input
+        type="input"
+        class="form__field"
+        placeholder="Name"
+        name="name"
+        id="name"
+        required
+      />
+      <label for="name" class="form__label">Short Detail</label>
+    </div>
+    <div class="form__group field">
+      <input
+        type="file"
+        class="form__field"
+        placeholder="Name"
+        name="name"
+        id="name"
+        required
+      />
+      <label for="name" class="form__label">Image</label>
+    </div>
+    <div style="padding: 8px">
+      <button
+        style="
+          padding: 8px;
+          border-radius: 8px;
+          color: white;
+          background-color: var(--gray);
+          border-width: 0px;
+          border-color: white;
+        "
+      >
+        Contribute
+      </button>
+    </div>
+  </body>
+</html>
+
+<style>
+  :root {
+    --primary: hsl(360 74% 51% / 1);
+    --secondary: hsl(360 74% 51% / 1);
+    --white: #fff;
+    --gray: hsl(360 74% 51% / 1);
+  }
+
+  .form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+  }
+
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid var(--white);
+    outline: 0;
+    font-size: 1.3rem;
+    color: var(--white);
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+
+  .form__field::placeholder {
+    color: transparent;
+  }
+
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+    color: white;
+  }
+
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--primary), var(--secondary));
+    border-image-slice: 1;
+  }
+
+  /* Reset input */
+  .form__field:required,
+  .form__field:invalid {
+    box-shadow: none;
+  }
+
+  /* Demo */
+  body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    background-color: #222222;
+  }
+</style>
