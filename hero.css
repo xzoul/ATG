@@ -74,10 +74,10 @@
 /* Medium devices (landscape tablets and medium-sized desktops) */
 @media only screen and (min-width: 991px) {
   .mask-container {
-    width: 800px;
+    width: 700px;
   }
   .heroTitle {
-    font-size: 7vw;
+    font-size: 6vw;
   }
   .heroDesc {
     font-size: 3vw;
@@ -88,10 +88,10 @@
 /* Large devices (laptops and large desktops) */
 @media only screen and (min-width: 1199px) {
   .mask-container {
-    width: 900px;
+    width: 800px;
   }
   .heroTitle {
-    font-size: 6vw;
+    font-size: 5vw;
   }
   .heroDesc {
     font-size: 2vw;
@@ -103,6 +103,13 @@
 @media only screen and (min-width: 1399px) {
   .mask-container {
     width: 1000px;
+  }
+  .heroTitle {
+    font-size: 64px;
+  }
+  .heroDesc {
+    font-size: 24px;
+    padding: 0 220px;
   }
 }
 

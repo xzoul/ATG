@@ -71,6 +71,7 @@
 
 .backside {
   height: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -105,7 +106,7 @@
 
 .frontside .card,
 .backside .card {
-  /* min-height: 250px; */
+  height: 350px;
 }
 
 .backside .card a {
@@ -147,7 +148,69 @@
   font-size: 6vw;
 }
 
+.img-fluid {
+  object-fit: cover;
+  height: 100%;
+}
+
+.ATGcard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 8px;
+  background-color: white;
+  border-radius: 10%;
+  max-height: 800px;
+  max-width: 800px;
+  transition: 1s;
+}
+
+.ATGcard:hover {
+  border-radius: 40%;
+}
+
+/* Size of Image should be 350 x 350 */
+
+.ATGcard-img {
+  height: 100%;
+  width: 100%;
+  max-height: 170px;
+  object-fit: contain;
+  transition: 0.6s;
+}
+
+.ATGcard:hover .ATGcard-img {
+  filter: drop-shadow(1px 0 0 var(--red)) drop-shadow(0 1.5px 0 var(--red))
+    drop-shadow(-1px 0 0 var(--red)) drop-shadow(0 -1px 0 var(--red));
+}
+
+.ATGcard-name {
+  font-family: "Source Code Pro";
+  color: white;
+  font-size: 3vw;
+  text-align: center;
+  transition: 1s;
+  margin: 8px 0 16px 0;
+  font-weight: 500;
+}
+
+.ATGcard:hover + .ATGcard-name {
+  color: var(--red);
+  font-size: 4vw;
+  font-weight: 600;
+}
+
 @media only screen and (min-width: 375px) {
+  .ATGcard-img {
+    max-height: 260px;
+  }
+  .ATGcard-name {
+    font-size: 6vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 7vw;
+  }
+
   .card-title-name {
     font-size: 6vw;
   }
@@ -161,6 +224,15 @@
 }
 
 @media only screen and (min-width: 479px) {
+  .ATGcard-img {
+    max-height: 350px;
+  }
+  .ATGcard-name {
+    font-size: 6vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 7vw;
+  }
   .card-title-name {
     font-size: 6vw;
   }
@@ -179,6 +251,15 @@
 
 /* Extra small devices (phones) */
 @media only screen and (min-width: 576px) {
+  .ATGcard-img {
+    max-height: 170px;
+  }
+  .ATGcard-name {
+    font-size: 3.5vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 4.5vw;
+  }
   .card-title-name {
     font-size: 3vw;
   }
@@ -197,6 +278,15 @@
 
 /* Small devices (portrait tablets and small desktops) */
 @media only screen and (min-width: 767px) {
+  .ATGcard-img {
+    max-height: 140px;
+  }
+  .ATGcard-name {
+    font-size: 2.5vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 3.5vw;
+  }
   .card-title-name {
     font-size: 2vw;
   }
@@ -215,6 +305,15 @@
 
 /* Medium devices (landscape tablets and medium-sized desktops) */
 @media only screen and (min-width: 991px) {
+  .ATGcard-img {
+    max-height: 150px;
+  }
+  .ATGcard-name {
+    font-size: 2vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 2.5vw;
+  }
   .card-title-name {
     font-size: 1.5vw;
   }
@@ -233,6 +332,15 @@
 
 /* Large devices (laptops and large desktops) */
 @media only screen and (min-width: 1199px) {
+  .ATGcard-img {
+    max-height: 190px;
+  }
+  .ATGcard-name {
+    font-size: 2vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 2.5vw;
+  }
   .card-title-name {
     font-size: 2vw;
   }
@@ -251,6 +359,15 @@
 
 /* Extra large devices (large desktops and TVs) */
 @media only screen and (min-width: 1399px) {
+  .ATGcard-img {
+    max-height: 230px;
+  }
+  .ATGcard-name {
+    font-size: 2vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 2.5vw;
+  }
   .card-title-name {
     font-size: 2vw;
   }
@@ -269,6 +386,15 @@
 
 /* Extra extra large devices */
 @media only screen and (min-width: 1599px) {
+  .ATGcard-img {
+    max-height: 230px;
+  }
+  .ATGcard-name {
+    font-size: 2vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 2.5vw;
+  }
   .card-title-name {
     font-size: 1.5vw;
   }
@@ -287,6 +413,15 @@
 
 /* Extra extra extra large devices */
 @media only screen and (min-width: 1600px) {
+  .ATGcard-img {
+    max-height: 180px;
+  }
+  .ATGcard-name {
+    font-size: 1.5vw;
+  }
+  .ATGcard:hover + .ATGcard-name {
+    font-size: 2vw;
+  }
   .card-title-name {
     font-size: 1vw;
   }
