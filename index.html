@@ -48,6 +48,17 @@
 
       gtag("config", "G-KEYZDYFLJ6");
     </script>
+
+    <script>
+      // Initialize Parse
+      Parse.initialize(
+        "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
+        "Jolo5FvOIS48u8aRHkC2alcI3mOVv9JUFswssZ2R"
+      );
+      Parse.serverURL = "https://parseapi.back4app.com/";
+    </script>
+    <script src="https://www.parsecdn.com/js/parse-1.17.1.min.js"></script>
+
     <!-- 
       Modal 
     -->
@@ -186,23 +197,6 @@
                   >
                 </div>
               </div>
-              <!-- <label for="usernamelogin">Username:</label>
-                <input
-                  type="text"
-                  id="usernamelogin"
-                  name="usernamelogin"
-                  required
-                />
-
-                <label for="passwordlogin">Password:</label>
-                <input
-                  type="password"
-                  id="passwordlogin"
-                  name="passwordlogin"
-                  required
-                /> 
-                <button type="button" onclick="login()">Login</button>
-              -->
 
               <div class="modal-footer modalBtns">
                 <button
@@ -382,7 +376,7 @@
           > -->
             Characters
           </h1>
-          <div class="gallery-character-gallery">
+          <div id="cardContainer" class="gallery-character-gallery">
             <!-- 
               Character Card   
             -->
@@ -425,7 +419,7 @@
               </div>
               <span class="card-label">Xia Qingyue</span>
             </div> -->
-            <div>
+            <!-- <div>
               <div class="ATGcard">
                 <img class="ATGcard-img" src="Images/Jazmine.webp" alt="" />
               </div>
@@ -436,8 +430,66 @@
                 <img class="ATGcard-img" src="Images/XQ.png" alt="" />
               </div>
               <p class="ATGcard-name">Xia Qingyue</p>
-            </div>
+            </div> -->
           </div>
+
+          <script>
+            // Query and update card content
+            function updateCardData() {
+              const MyObject = Parse.Object.extend("MyObject");
+              const query = new Parse.Query(MyObject);
+
+              query.find().then(
+                function (results) {
+                  const cardContainer =
+                    document.getElementById("cardContainer");
+
+                  // Clear previous content
+                  cardContainer.innerHTML = "";
+
+                  // Update card content
+                  results.forEach(function (object) {
+                    const name = object.get("name");
+                    const imageUrl = object.get("image");
+
+                    // Create wrapper div
+                    const wrapperDiv = document.createElement("div");
+
+                    // Create card elements
+                    const cardDiv = document.createElement("div");
+                    cardDiv;
+                    cardDiv.className = "ATGcard";
+
+                    const imageElement = document.createElement("img");
+                    imageElement.className = "ATGcard-img";
+                    imageElement.src = imageUrl;
+                    imageElement.alt = name;
+
+                    const nameElement = document.createElement("p");
+                    nameElement.className = "ATGcard-name";
+                    nameElement.textContent = name;
+
+                    // Append image and name to the card div
+                    cardDiv.appendChild(imageElement);
+
+                    // Append the card div to the wrapper div
+                    wrapperDiv.appendChild(cardDiv);
+                    wrapperDiv.appendChild(nameElement);
+
+                    // Append the wrapper div to the card container
+                    cardContainer.appendChild(wrapperDiv);
+                  });
+                },
+                function (error) {
+                  console.error("Error fetching data: " + error.message);
+                  alert("Error fetching data. Please try again.");
+                }
+              );
+            }
+
+            // Call the function to update card data when the page loads
+            updateCardData();
+          </script>
         </div>
 
         <!-- 
