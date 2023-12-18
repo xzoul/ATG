@@ -216,15 +216,6 @@ body {
   margin-top: 100px !important;
 }
 
-.gallery-character-gallery {
-  width: 100%;
-  display: grid;
-  padding: 48px;
-  grid-gap: var(--dl-space-space-doubleunit);
-  max-width: 1400px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
 .gallery-card-container {
   width: 100%;
   display: flex;
@@ -255,89 +246,6 @@ body {
   color: white;
   align-self: center;
   text-align: center;
-}
-
-@media (max-width: 1600px) {
-  .gallery-character-gallery {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
-@media (max-width: 1260px) {
-  /* .card-description {
-    max-height: 150px;
-    font-size: 1rem;
-  } */
-
-  .card-name {
-    font-size: 18px;
-    /* padding: 14px; */
-    margin: 14px;
-  }
-}
-
-@media (max-width: 991px) {
-  /* .card-description {
-    font-size: 2vw;
-    max-height: 100px;
-  } */
-
-  .card-name {
-    font-size: 16px;
-    /* padding: 13px; */
-    margin: 12px;
-  }
-
-  .gallery-character-gallery {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width: 767px) {
-  /* .card-description {
-    font-size: 9px;
-    max-height: 125px;
-  } */
-
-  .card-name {
-    font-size: 14px;
-    /* padding: 12px !important; */
-    margin: 10px !important;
-  }
-
-  .gallery-character-gallery {
-    padding-left: 32px;
-    padding-right: 32px;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .gallery-card-container {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 479px) {
-  /* .card-description {
-    font-size: 8px;
-    max-height: 150px;
-  } */
-
-  .card-name {
-    /* font-size: 12px; */
-    /* padding: 11px !important; */
-    margin: 8px !important;
-  }
-
-  .gallery-character-gallery {
-    padding-top: 32px;
-    padding-left: var(--dl-space-space-unit);
-    padding-right: var(--dl-space-space-unit);
-    padding-bottom: 32px;
-    grid-template-columns: 1fr;
-  }
-
-  .gallery-card-image {
-    height: 10rem;
-  }
 }
 
 /* FontAwesome for working BootSnippet :> */

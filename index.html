@@ -49,6 +49,7 @@
       gtag("config", "G-KEYZDYFLJ6");
     </script>
 
+    <script src="https://www.parsecdn.com/js/parse-1.17.1.min.js"></script>
     <script>
       // Initialize Parse
       Parse.initialize(
@@ -57,7 +58,6 @@
       );
       Parse.serverURL = "https://parseapi.back4app.com/";
     </script>
-    <script src="https://www.parsecdn.com/js/parse-1.17.1.min.js"></script>
 
     <!-- 
       Modal 
@@ -376,64 +376,50 @@
           > -->
             Characters
           </h1>
-          <div id="cardContainer" class="gallery-character-gallery">
-            <!-- 
-              Character Card   
-            -->
-            <!-- <div class="characterCard">
-              <div class="image-flip">
-                <div class="mainflip flip-0">
-                  <div class="frontside">
-                    <div class="card">
-                      <img
-                        class="img-fluid"
-                        src="/Images/XQ.png"
-                        alt="card image"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="backside">
-                    <div class="card">
-                      <div class="card-body text-center">
-                        <h5 class="card-title-name">Xia Qingyue</h5>
-                        <div class="card-desc">
-                          <span class="card-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Quisque non lectus ut nisi luctus pharetra non
-                            vel justo. Suspendisse quis mauris sed magna mollis
-                            molestie. Pellentesque auctor egestas mi non
-                            vestibulum. Proin vestibulum, ipsum nec tristique
-                            sagittis, mi mi facilisis ipsum, nec interdum diam
-                            nulla nec felis. Etiam malesuada elit eu sem
-                            sollicitudin sollicitudin. Nulla lobortis ipsum ut
-                            nibh finibus, at pellentesque dui dapibus. Phasellus
-                            ut venenatis sem, et fermentum lectus.
-                          </span>
-                          <span class="cardUser"> Jimmy </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <span class="card-label">Xia Qingyue</span>
-            </div> -->
-            <!-- <div>
-              <div class="ATGcard">
-                <img class="ATGcard-img" src="Images/Jazmine.webp" alt="" />
-              </div>
-              <p class="ATGcard-name">Jazmine</p>
-            </div>
-            <div>
-              <div class="ATGcard">
-                <img class="ATGcard-img" src="Images/XQ.png" alt="" />
-              </div>
-              <p class="ATGcard-name">Xia Qingyue</p>
-            </div> -->
-          </div>
+          <div id="cardContainer" class="gallery-character-gallery"></div>
 
           <script>
+            // Function to upload image and data
+            function uploadImage() {
+              const name = document.getElementById("CharacterName").value;
+              const fileInput = document.getElementById("ImageInput");
+              const file = fileInput.files[0];
+
+              if (!name || !file) {
+                alert("Please provide a name and select an image.");
+                return;
+              }
+
+              const parseFile = new Parse.File(file.name, file);
+
+              parseFile.save().then(
+                function () {
+                  // Image saved successfully, now save the data
+                  const MyObject = Parse.Object.extend("MyObject");
+                  const myObject = new MyObject();
+
+                  myObject.set("name", name);
+                  myObject.set("image", parseFile);
+
+                  myObject.save().then(
+                    function () {
+                      console.log("Object saved successfully.");
+                      alert("Data and image uploaded successfully!");
+                      updateCardData(); // Refresh the displayed data after upload
+                    },
+                    function (error) {
+                      console.error("Error saving object: " + error.message);
+                      alert("Error saving data. Please try again.");
+                    }
+                  );
+                },
+                function (error) {
+                  console.error("Error saving file: " + error.message);
+                  alert("Error saving image. Please try again.");
+                }
+              );
+            }
+
             // Query and update card content
             function updateCardData() {
               const MyObject = Parse.Object.extend("MyObject");
@@ -511,15 +497,15 @@
                   type="input"
                   class="form__field"
                   placeholder="Name"
-                  name="CharacterInput"
-                  id="CharacterInput"
+                  name="CharacterName"
+                  id="CharacterName"
                   required
                 />
-                <label for="CharacterInput" class="form__label"
+                <label for="CharacterName" class="form__label"
                   >Character Name</label
                 >
               </div>
-              <div class="form__group field">
+              <!-- <div class="form__group field">
                 <input
                   type="input"
                   class="form__field"
@@ -531,7 +517,7 @@
                 <label for="ShortDetailInput" class="form__label"
                   >Short Description</label
                 >
-              </div>
+              </div> -->
               <div class="form__group field">
                 <!-- <label class="custom-file-upload"> -->
                 <input
@@ -541,13 +527,17 @@
                   name="ImageInput"
                   id="ImageInput"
                   required
+                  accept="image/*"
                   style="cursor: pointer"
                 />
                 <label for="ImageInput" class="form__label">Image</label>
                 <!-- </label> -->
               </div>
               <div class="uploadBtn">
-                <button class="mainfonttitle nav-link mt-1">
+                <button
+                  class="mainfonttitle nav-link mt-1"
+                  onclick="uploadImage()"
+                >
                   upload character
                 </button>
               </div>
