@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="import" href="head-content.html" />
+    <title>ATG Bootstrap Website</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="banner.css" />
     <link rel="stylesheet" href="modal.css" />
@@ -19,19 +21,19 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
       data-tag="font"
     />
-
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap"
       data-tag="font"
     />
-    <script src="myscripts.js"></script>
-    <title>ATG Bootstrap Website</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="myscripts.js"></script>
     <script
       type="text/javascript"
       src="https://npmcdn.com/parse/dist/parse.min.js"
     ></script>
+    <script src="https://www.parsecdn.com/js/parse-1.17.1.min.js"></script>
   </head>
   <body>
     <!-- Google tag (gtag.js) -->
@@ -222,6 +224,7 @@
        End of Modal 
     -->
 
+    <!-- Main Section  -->
     <div>
       <!-- 
         Banner 
@@ -377,105 +380,16 @@
             Characters
           </h1>
           <div id="cardContainer" class="gallery-character-gallery"></div>
-
-          <script>
-            // Function to upload image and data
-            function uploadImage() {
-              const name = document.getElementById("CharacterName").value;
-              const fileInput = document.getElementById("ImageInput");
-              const file = fileInput.files[0];
-
-              if (!name || !file) {
-                alert("Please provide a name and select an image.");
-                return;
-              }
-
-              const parseFile = new Parse.File(file.name, file);
-
-              parseFile.save().then(
-                function () {
-                  // Image saved successfully, now save the data
-                  const MyObject = Parse.Object.extend("MyObject");
-                  const myObject = new MyObject();
-
-                  myObject.set("name", name);
-                  myObject.set("image", parseFile);
-
-                  myObject.save().then(
-                    function () {
-                      console.log("Object saved successfully.");
-                      alert("Data and image uploaded successfully!");
-                      updateCardData(); // Refresh the displayed data after upload
-                    },
-                    function (error) {
-                      console.error("Error saving object: " + error.message);
-                      alert("Error saving data. Please try again.");
-                    }
-                  );
-                },
-                function (error) {
-                  console.error("Error saving file: " + error.message);
-                  alert("Error saving image. Please try again.");
-                }
-              );
-            }
-
-            // Query and update card content
-            function updateCardData() {
-              const MyObject = Parse.Object.extend("MyObject");
-              const query = new Parse.Query(MyObject);
-
-              query.find().then(
-                function (results) {
-                  const cardContainer =
-                    document.getElementById("cardContainer");
-
-                  // Clear previous content
-                  cardContainer.innerHTML = "";
-
-                  // Update card content
-                  results.forEach(function (object) {
-                    const name = object.get("name");
-                    const imageUrl = object.get("image");
-
-                    // Create wrapper div
-                    const wrapperDiv = document.createElement("div");
-
-                    // Create card elements
-                    const cardDiv = document.createElement("div");
-                    cardDiv;
-                    cardDiv.className = "ATGcard";
-
-                    const imageElement = document.createElement("img");
-                    imageElement.className = "ATGcard-img";
-                    imageElement.src = imageUrl;
-                    imageElement.alt = name;
-
-                    const nameElement = document.createElement("p");
-                    nameElement.className = "ATGcard-name";
-                    nameElement.textContent = name;
-
-                    // Append image and name to the card div
-                    cardDiv.appendChild(imageElement);
-
-                    // Append the card div to the wrapper div
-                    wrapperDiv.appendChild(cardDiv);
-                    wrapperDiv.appendChild(nameElement);
-
-                    // Append the wrapper div to the card container
-                    cardContainer.appendChild(wrapperDiv);
-                  });
-                },
-                function (error) {
-                  console.error("Error fetching data: " + error.message);
-                  alert("Error fetching data. Please try again.");
-                }
-              );
-            }
-
-            // Call the function to update card data when the page loads
-            updateCardData();
-          </script>
+          <div class="d-flex justify-content-center">
+            <div
+              class="spinner-border"
+              role="status"
+              style="width: 8vw; height: 8vw"
+              id="loading"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         </div>
 
         <!-- 
@@ -488,26 +402,26 @@
         <div class="container contribute-main-container">
           <h1 class="sectionTitle">Add A Character</h1>
           <div id="contribute" class="contribute-container container">
-            <form class="text-white" action="">
+            <div class="text-white">
               <h6 style="margin: 8px 0">
                 Kindly ensure all fields are properly filled.
               </h6>
               <div class="form__group field">
                 <input
-                  type="input"
+                  type="text"
                   class="form__field"
                   placeholder="Name"
-                  name="CharacterName"
-                  id="CharacterName"
+                  name="nameInput"
+                  id="nameInput"
                   required
                 />
-                <label for="CharacterName" class="form__label"
+                <label for="nameInput" class="form__label"
                   >Character Name</label
                 >
               </div>
               <!-- <div class="form__group field">
                 <input
-                  type="input"
+                  type="textarea"
                   class="form__field"
                   placeholder="Name"
                   name="ShortDetailInput"
@@ -524,24 +438,23 @@
                   type="file"
                   class="form__field"
                   placeholder="Image"
-                  name="ImageInput"
-                  id="ImageInput"
+                  name="fileInput"
+                  id="fileInput"
                   required
-                  accept="image/*"
                   style="cursor: pointer"
                 />
-                <label for="ImageInput" class="form__label">Image</label>
+                <label for="fileInput" class="form__label">Image</label>
                 <!-- </label> -->
               </div>
               <div class="uploadBtn">
                 <button
                   class="mainfonttitle nav-link mt-1"
-                  onclick="uploadImage()"
+                  onclick="uploadCharacter()"
                 >
                   upload character
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
 
@@ -562,100 +475,8 @@
         >
       </footer>
     </div>
+
+    <script src="https://unpkg.com/parse/dist/parse.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
-
-<script>
-  // Initialize Parse
-  Parse.initialize(
-    "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
-    "Jolo5FvOIS48u8aRHkC2alcI3mOVv9JUFswssZ2R"
-  );
-  Parse.serverURL = "https://parseapi.back4app.com/";
-
-  // --------------- Start of Sign Up ---------------
-
-  // Create a new User
-  async function createParseUser() {
-    // Creates a new Parse "User" object, which is created by default in your Parse app
-    let user = new Parse.User();
-    // Set the input values to the new "User" object
-    user.set("username", document.getElementById("usernameRegister").value);
-    user.set("email", document.getElementById("emailRegister").value);
-    user.set("password", document.getElementById("passwordRegister").value);
-    try {
-      // Call the save method, which returns the saved object if successful
-      user = await user.save();
-      if (user !== null) {
-        // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-
-        // Add the attribute to the button with the ID "myDynamicButton"
-        var myDynamicButton = document.getElementById("myDynamicButton");
-        myDynamicButton.setAttribute("data-bs-dismiss", "modal");
-        // alert(
-        //   `New object created with success! ObjectId: ${user.id}, ${user.get(
-        //     "username"
-        //   )}`
-        // );
-      }
-    } catch (error) {
-      alert(`Error: ${error.message}`);
-    }
-  }
-
-  // Add on click listener to call the create parse user function
-  document
-    .getElementById("createButton")
-    .addEventListener("click", async function () {
-      createParseUser();
-    });
-
-  // --------------- End of Parse Sign Up ---------------
-
-  // --------------- Start of Parse Log In ---------------
-  // logIn();
-
-  function login() {
-    // Get values from the form
-    var username = document.getElementById("usernamelogin").value;
-    var password = document.getElementById("passwordlogin").value;
-
-    // Use Parse.User.logIn method to authenticate
-    Parse.User.logIn(username, password, {
-      success: function (user) {
-        // User successfully logged in
-        console.log(
-          "User created successful with name: " +
-            user.get("username") +
-            " and email: " +
-            user.get("email")
-        );
-        alert("Login successful!");
-      },
-      error: function (user, error) {
-        // Login failed
-        alert(console.log("Error: " + error.code + " " + error.message));
-        console.log("Error: " + error.code + " " + error.message);
-        alert("Login failed. Please check your credentials.");
-      },
-    });
-  }
-
-  // function logIn() {
-  //   // Create a new instance of the user class
-  //   var user = Parse.User.logIn("myname", "mypass")
-  //     .then(function (user) {
-  //       console.log(
-  //         "User created successful with name: " +
-  //           user.get("username") +
-  //           " and email: " +
-  //           user.get("email")
-  //       );
-  //     })
-  //     .catch(function (error) {
-  //       console.log("Error: " + error.code + " " + error.message);
-  //     });
-  // }
-
-  // --------------- End of Parse Log Up In ---------------
-</script>

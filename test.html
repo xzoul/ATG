@@ -3,130 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Parse Character Upload</title>
   </head>
   <body>
-    <div class="form__group field">
-      <input
-        type="input"
-        class="form__field"
-        placeholder="Name"
-        name="name"
-        id="name"
-        required
-      />
-      <label for="name" class="form__label">Character</label>
-    </div>
-    <div class="form__group field">
-      <input
-        type="input"
-        class="form__field"
-        placeholder="Name"
-        name="name"
-        id="name"
-        required
-      />
-      <label for="name" class="form__label">Short Detail</label>
-    </div>
-    <div class="form__group field">
-      <input
-        type="file"
-        class="form__field"
-        placeholder="Name"
-        name="name"
-        id="name"
-        required
-      />
-      <label for="name" class="form__label">Image</label>
-    </div>
-    <div style="padding: 8px">
-      <button
-        style="
-          padding: 8px;
-          border-radius: 8px;
-          color: white;
-          background-color: var(--gray);
-          border-width: 0px;
-          border-color: white;
-        "
-      >
-        Contribute
-      </button>
-    </div>
+    <input type="file" id="fileInput" />
+    <input type="text" id="nameInput" placeholder="Enter character name" />
+    <button onclick="uploadCharacter()">Upload Character</button>
+    <ul id="characterList"></ul>
+
+    <script src="https://unpkg.com/parse/dist/parse.js"></script>
+    <!-- <script src="app.js"></script> -->
   </body>
 </html>
 
-<style>
-  :root {
-    --primary: hsl(360 74% 51% / 1);
-    --secondary: hsl(360 74% 51% / 1);
-    --white: #fff;
-    --gray: hsl(360 74% 51% / 1);
+<script>
+  // Initialize Parse
+  Parse.initialize(
+    "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
+    "Jolo5FvOIS48u8aRHkC2alcI3mOVv9JUFswssZ2R"
+  );
+  Parse.serverURL = "https://parseapi.back4app.com/";
+
+  // Define Parse object for Characters
+  const Characters = Parse.Object.extend("Characters");
+
+  // Function to upload a character
+  function uploadCharacter() {
+    const fileInput = document.getElementById("fileInput");
+    const nameInput = document.getElementById("nameInput");
+    const file = fileInput.files[0];
+
+    if (file && nameInput.value.trim() !== "") {
+      const parseFile = new Parse.File("profile.jpg", file);
+
+      parseFile
+        .save()
+        .then(() => {
+          const character = new Characters();
+          character.set("Character", nameInput.value.trim());
+          character.set("Profile", parseFile);
+          return character.save();
+        })
+        .then(() => {
+          console.log("Character uploaded successfully!");
+          fetchCharacters();
+        })
+        .catch((error) => {
+          console.error("Error uploading character:", error);
+        });
+    } else {
+      console.error("Please select a file and enter a character name");
+    }
   }
 
-  .form__group {
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 50%;
-  }
+  // Function to fetch and display characters
+  function fetchCharacters() {
+    const query = new Parse.Query(Characters);
 
-  .form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid var(--white);
-    outline: 0;
-    font-size: 1.3rem;
-    color: var(--white);
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-  }
+    query
+      .find()
+      .then((characters) => {
+        const characterList = document.getElementById("characterList");
+        characterList.innerHTML = "";
 
-  .form__field::placeholder {
-    color: transparent;
+        characters.forEach((character) => {
+          const imageUrl = character.get("Profile").url();
+          const name = character.get("Character");
+          const listItem = document.createElement("li");
+          const img = document.createElement("img");
+          img.src = imageUrl;
+          img.width = 100;
+          const textNode = document.createTextNode(`Character: ${name}`);
+          listItem.appendChild(img);
+          listItem.appendChild(textNode);
+          characterList.appendChild(listItem);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching characters:", error);
+        alert("Error fetching data. Please try again.");
+      });
   }
-
-  .form__field:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
-    color: white;
-  }
-
-  .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 0.8rem;
-    color: var(--gray);
-  }
-
-  .form__field:focus {
-    padding-bottom: 6px;
-    font-weight: 700;
-    border-width: 3px;
-    border-image: linear-gradient(to right, var(--primary), var(--secondary));
-    border-image-slice: 1;
-  }
-
-  /* Reset input */
-  .form__field:required,
-  .form__field:invalid {
-    box-shadow: none;
-  }
-
-  /* Demo */
-  body {
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    background-color: #222222;
-  }
-</style>
+</script>
