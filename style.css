@@ -82,6 +82,15 @@ input[type="file"]::file-selector-button:hover {
   display: none;
 }
 
+.spinner-border {
+  width: 9vw;
+  height: 9vw;
+  border-left-color: white;
+  border-bottom-color: white;
+  border-top-color: white;
+  border-width: 10px;
+}
+
 .bar {
   width: 20px;
   height: 200px;
@@ -222,6 +231,16 @@ input[type="file"]::file-selector-button:hover {
 
 .mainfonttitle:hover {
   color: var(--red) !important;
+}
+
+.instruction {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.instructionRed {
+  color: var(--red);
+  font-weight: 700;
 }
 
 .mask {

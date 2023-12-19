@@ -379,17 +379,15 @@
           > -->
             Characters
           </h1>
+          <div class="characterSection"><h3>main characters</h3></div>
           <div id="cardContainer" class="gallery-character-gallery"></div>
-          <div class="d-flex justify-content-center">
-            <div
-              class="spinner-border"
-              role="status"
-              style="width: 8vw; height: 8vw"
-              id="loading"
-            >
+          <div class="d-flex justify-content-center" style="margin-top: 30px">
+            <div class="spinner-border" role="status" id="loading">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
+          <div class="characterSection"><h3>side characters</h3></div>
+          <div class="characterSection"><h3>extras</h3></div>
         </div>
 
         <!-- 
@@ -403,8 +401,11 @@
           <h1 class="sectionTitle">Add A Character</h1>
           <div id="contribute" class="contribute-container container">
             <div class="text-white">
-              <h6 style="margin: 8px 0">
-                Kindly ensure all fields are properly filled.
+              <h6 class="instruction">
+                Kindly ensure all fields are correctly filled.
+                <span class="instructionRed">Remember</span> to upload only the
+                <span class="instructionRed">head portion</span> of the
+                character.
               </h6>
               <div class="form__group field">
                 <input
@@ -449,7 +450,7 @@
               <div class="uploadBtn">
                 <button
                   class="mainfonttitle nav-link mt-1"
-                  onclick="uploadCharacter()"
+                  onclick="resizeAndUpload()"
                 >
                   upload character
                 </button>

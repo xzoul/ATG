@@ -209,6 +209,26 @@
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
 }
 
+.characterSection {
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.characterSection h3 {
+  font-family: "Overpass";
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 1s;
+}
+
+.characterSection h3:hover {
+  text-decoration: none;
+  color: var(--red);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 @media only screen and (min-width: 375px) {
   .ATGcard-img {
     max-height: 260px;

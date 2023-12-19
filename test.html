@@ -6,9 +6,9 @@
     <title>Parse Character Upload</title>
   </head>
   <body>
-    <input type="file" id="fileInput" />
+    <input type="file" id="imageInput" />
     <input type="text" id="nameInput" placeholder="Enter character name" />
-    <button onclick="uploadCharacter()">Upload Character</button>
+    <button onclick="resizeAndUpload()">Upload Character</button>
     <ul id="characterList"></ul>
 
     <script src="https://unpkg.com/parse/dist/parse.js"></script>
@@ -17,71 +17,245 @@
 </html>
 
 <script>
-  // Initialize Parse
-  Parse.initialize(
-    "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
-    "Jolo5FvOIS48u8aRHkC2alcI3mOVv9JUFswssZ2R"
-  );
-  Parse.serverURL = "https://parseapi.back4app.com/";
+  // function resizeAndMakeTransparent() {
+  //   var input = document.getElementById("imageInput");
+  //   var nameInput = document.getElementById("nameInput");
+  //   var file = input.files[0];
+  //   var characterName = nameInput.value;
 
-  // Define Parse object for Characters
-  const Characters = Parse.Object.extend("Characters");
+  //   if (file) {
+  //     var reader = new FileReader();
 
-  // Function to upload a character
-  function uploadCharacter() {
-    const fileInput = document.getElementById("fileInput");
-    const nameInput = document.getElementById("nameInput");
-    const file = fileInput.files[0];
+  //     reader.onload = function (e) {
+  //       var img = new Image();
+  //       img.src = e.target.result;
 
-    if (file && nameInput.value.trim() !== "") {
-      const parseFile = new Parse.File("profile.jpg", file);
+  //       img.onload = function () {
+  //         var canvas = document.createElement("canvas");
+  //         var ctx = canvas.getContext("2d");
 
-      parseFile
-        .save()
-        .then(() => {
-          const character = new Characters();
-          character.set("Character", nameInput.value.trim());
-          character.set("Profile", parseFile);
-          return character.save();
-        })
-        .then(() => {
-          console.log("Character uploaded successfully!");
-          fetchCharacters();
-        })
-        .catch((error) => {
-          console.error("Error uploading character:", error);
-        });
-    } else {
-      console.error("Please select a file and enter a character name");
+  //         // Set the desired width and height for the resized image
+  //         var maxWidth = 350; // Set your desired width
+  //         var maxHeight = 300; // Set your desired height
+
+  //         var width = img.width;
+  //         var height = img.height;
+
+  //         // Calculate the new dimensions to maintain the aspect ratio
+  //         if (width > height) {
+  //           if (width > maxWidth) {
+  //             height *= maxWidth / width;
+  //             width = maxWidth;
+  //           }
+  //         } else {
+  //           if (height > maxHeight) {
+  //             width *= maxHeight / height;
+  //             height = maxHeight;
+  //           }
+  //         }
+
+  //         // Set the canvas dimensions
+  //         canvas.width = width;
+  //         canvas.height = height;
+
+  //         // Draw the image on the canvas
+  //         ctx.drawImage(img, 0, 0, width, height);
+
+  //         // Get the image data from the canvas
+  //         var imageData = ctx.getImageData(0, 0, width, height);
+
+  //         // Set the background to transparent
+  //         for (var i = 0; i < imageData.data.length; i += 4) {
+  //           // Check if the pixel is white (you can adjust the threshold as needed)
+  //           if (
+  //             imageData.data[i] === 255 &&
+  //             imageData.data[i + 1] === 255 &&
+  //             imageData.data[i + 2] === 255
+  //           ) {
+  //             // Set the alpha channel to 0 (transparent)
+  //             imageData.data[i + 3] = 0;
+  //           }
+  //         }
+
+  //         // Clear the canvas
+  //         ctx.clearRect(0, 0, width, height);
+
+  //         // Put the modified image data back on the canvas
+  //         ctx.putImageData(imageData, 0, 0);
+
+  //         // Get the modified data URL
+  //         var modifiedDataUrl = canvas.toDataURL("image/png"); // Use PNG for transparency
+
+  //         // Now, you can upload the modifiedDataUrl to your server or database
+  //         uploadCharacterToParse(characterName, modifiedDataUrl);
+  //       };
+  //     };
+
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+
+  function resizeAndUpload() {
+    var input = document.getElementById("imageInput");
+    var file = input.files[0];
+    var nameInput = document.getElementById("nameInput");
+    var characterName = nameInput.value;
+
+    if (file) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var img = new Image();
+        img.src = e.target.result;
+
+        img.onload = function () {
+          var canvas = document.createElement("canvas");
+          var ctx = canvas.getContext("2d");
+
+          // Set the desired width and height for the resized image
+          var targetWidth = 350;
+          var targetHeight = 300;
+
+          // Resize the image while maintaining the aspect ratio
+          var width = img.width;
+          var height = img.height;
+          var aspectRatio = width / height;
+
+          if (width > height) {
+            height = targetWidth / aspectRatio;
+            width = targetWidth;
+          } else {
+            width = targetHeight * aspectRatio;
+            height = targetHeight;
+          }
+
+          // Set the canvas dimensions
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
+
+          // Draw the resized image on the canvas
+          // ctx.drawImage(img, 0, 0, width, height);
+          ctx.drawImage(img, 0, targetHeight - height, width, height);
+
+          // Get the resized data URL
+          var resizedDataUrl = canvas.toDataURL("image/png");
+
+          // Upload the resized image to Parse
+          uploadCharacterToParse(characterName, resizedDataUrl);
+        };
+      };
+
+      reader.readAsDataURL(file);
     }
   }
 
-  // Function to fetch and display characters
-  function fetchCharacters() {
-    const query = new Parse.Query(Characters);
+  // function resizeAndUpload2() {
+  //   var input = document.getElementById("imageInput");
+  //   var file = input.files[0];
+  //   var nameInput = document.getElementById("nameInput");
+  //   var characterName = nameInput.value;
 
-    query
-      .find()
-      .then((characters) => {
-        const characterList = document.getElementById("characterList");
-        characterList.innerHTML = "";
+  //   if (file) {
+  //     var reader = new FileReader();
 
-        characters.forEach((character) => {
-          const imageUrl = character.get("Profile").url();
-          const name = character.get("Character");
-          const listItem = document.createElement("li");
-          const img = document.createElement("img");
-          img.src = imageUrl;
-          img.width = 100;
-          const textNode = document.createTextNode(`Character: ${name}`);
-          listItem.appendChild(img);
-          listItem.appendChild(textNode);
-          characterList.appendChild(listItem);
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching characters:", error);
-        alert("Error fetching data. Please try again.");
-      });
+  //     reader.onload = function (e) {
+  //       var img = new Image();
+  //       img.src = e.target.result;
+
+  //       img.onload = function () {
+  //         var canvas = document.createElement("canvas");
+  //         var ctx = canvas.getContext("2d");
+
+  //         // Set the desired width and height for the resized image
+  //         var targetWidth = 350;
+  //         var targetHeight = 300;
+
+  //         // Set canvas dimensions with transparency support
+  //         canvas.width = targetWidth;
+  //         canvas.height = targetHeight;
+
+  //         // Resize the image while maintaining the aspect ratio
+  //         var width = img.width;
+  //         var height = img.height;
+  //         var aspectRatio = width / height;
+
+  //         if (width > height) {
+  //           height = targetWidth / aspectRatio;
+  //           width = targetWidth;
+  //         } else {
+  //           width = targetHeight * aspectRatio;
+  //           height = targetHeight;
+  //         }
+
+  //         // Calculate the centering offsets
+  //         var offsetX = (targetWidth - width) / 2;
+  //         var offsetY = (targetHeight - height) / 2;
+
+  //         // Draw the resized image on the canvas with transparency
+  //         ctx.clearRect(0, 0, targetWidth, targetHeight); // Clear canvas
+  //         ctx.drawImage(
+  //           img,
+  //           0,
+  //           0,
+  //           width,
+  //           height,
+  //           offsetX,
+  //           offsetY,
+  //           width,
+  //           height
+  //         );
+
+  //         // Get the resized data URL with transparency
+  //         var resizedDataUrl = canvas.toDataURL("image/png"); // Use PNG format for transparency
+
+  //         // Upload the resized image to Parse
+  //         uploadCharacterToParse(characterName, resizedDataUrl);
+  //       };
+  //     };
+
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+
+  function uploadCharacterToParse(characterName, dataUrl) {
+    // Initialize Parse
+    Parse.initialize(
+      "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
+      "Jolo5FvOIS48u8aRHkC2alcI3mOVv9JUFswssZ2R"
+    );
+    Parse.serverURL = "https://parseapi.back4app.com/";
+
+    // Create a new Parse File with the modified image data
+    var file = new Parse.File("image.png", { base64: dataUrl });
+
+    // Save the file to Parse
+    file.save().then(
+      function () {
+        // The file has been saved successfully.
+        // Now, you can save other data to Parse, referencing this file.
+
+        // Create a new Parse Object for the "Characters" table
+        var Character = Parse.Object.extend("Characters");
+        var character = new Character();
+
+        // Set properties of the character object
+        character.set("Character", characterName);
+        character.set("Profile", file);
+
+        // Save the character object to Parse
+        character.save().then(
+          function () {
+            console.log("Character saved with image:", file.url());
+          },
+          function (error) {
+            console.error("Error saving character: ", error);
+          }
+        );
+      },
+      function (error) {
+        // The file either could not be read, or could not be saved to Parse.
+        console.error("Error saving file to Parse: ", error);
+      }
+    );
   }
 </script>
