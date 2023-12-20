@@ -8,6 +8,11 @@
   <body>
     <input type="file" id="imageInput" />
     <input type="text" id="nameInput" placeholder="Enter character name" />
+    <select id="categorySelect">
+      <option value="MainCharacter">Main Character</option>
+      <option value="SideCharacter">Side Character</option>
+      <option value="Extra">Extra</option>
+    </select>
     <button onclick="resizeAndUpload()">Upload Character</button>
     <ul id="characterList"></ul>
 
@@ -100,8 +105,9 @@
     var file = input.files[0];
     var nameInput = document.getElementById("nameInput");
     var characterName = nameInput.value;
+    var category = document.getElementById("categorySelect").value;
 
-    if (file) {
+    if (file && characterName && category) {
       var reader = new FileReader();
 
       reader.onload = function (e) {
@@ -141,7 +147,7 @@
           var resizedDataUrl = canvas.toDataURL("image/png");
 
           // Upload the resized image to Parse
-          uploadCharacterToParse(characterName, resizedDataUrl);
+          uploadCharacterToParse(characterName, resizedDataUrl, category);
         };
       };
 
@@ -217,7 +223,7 @@
   //   }
   // }
 
-  function uploadCharacterToParse(characterName, dataUrl) {
+  function uploadCharacterToParse(characterName, dataUrl, category) {
     // Initialize Parse
     Parse.initialize(
       "fJdH7sVkUDqc6DKnTP8pn74MAgJtDMH8GZaxIXP3",
@@ -239,13 +245,19 @@
         var character = new Character();
 
         // Set properties of the character object
+        character.set("Category", category);
         character.set("Character", characterName);
         character.set("Profile", file);
 
         // Save the character object to Parse
         character.save().then(
           function () {
-            console.log("Character saved with image:", file.url());
+            console.log(
+              "Character saved with image:",
+              file.url(),
+              "Category",
+              category
+            );
           },
           function (error) {
             console.error("Error saving character: ", error);
